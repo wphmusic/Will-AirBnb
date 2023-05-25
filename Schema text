@@ -1,0 +1,66 @@
+Table user {
+  id string
+  firstName string
+  lastName string
+  email string
+  username string
+}
+
+Table spot {
+  id string
+  ownerId string
+  address string
+  city string
+  state string
+  country string
+  lat decimal
+  lng decimal
+  name string
+  description string
+  price decimal
+  createdAt string
+  updatedAt string
+  avgRating decimal
+  previewImage string
+}
+
+Table review {
+  id string
+  userId string
+  spotId string
+  review string
+  stars int
+  createdAt string
+  updatedAt string
+}
+
+Table booking {
+  id string 
+  spotId string
+  userId string
+  startDate string
+  endDate string
+  createdAt string
+  updatedAt string
+}
+
+Table spotImage {
+  id string
+  spotId string
+  url string
+  preview boolean
+}
+
+Table reviewImage {
+  id string
+  reviewId string
+  url string
+}
+
+Ref: user.id < review.userId
+Ref: spot.id < review.spotId
+Ref: user.id < spot.ownerId
+Ref: spot.id < booking.spotId
+Ref: user.id < booking.userId
+Ref: spot.id < spotImage.spotId
+Ref: review.id < reviewImage.reviewId
